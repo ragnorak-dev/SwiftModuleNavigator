@@ -8,10 +8,10 @@
 import Navigator
 import ViewIdentifiers
 
-public class FeatureTwoLoeaderViews {
+public extension Navigator {
     
-    public static func loadViews() {
-        Navigator.navigator.addView(id: ViewIdentifiers.FEATURE_TWO, view: SwiftUIViewModule {
+    func featureTwoloadViews() {
+        addView(id: FeatureTwoDestination.viewTwo, view: SwiftUIViewModule {
             params in FeatureTwoView(numberFromOne: params?[0] as? Int ?? 0)
         })
     }

@@ -11,6 +11,7 @@ import Navigator
 import ViewIdentifiers
 
 public struct FeatureOneView: View {
+    @EnvironmentObject private var navigator: Navigator
     
     var externalGreet: String? = nil
     var externalNumber: Int? = nil
@@ -30,14 +31,33 @@ public struct FeatureOneView: View {
             Text(externalGreet ?? "")
             Text(String(externalNumber ?? 0))
             
-            NavigationLink {
-                Navigator.navigator.navigationTo(viewId: ViewIdentifiers.FEATURE_TWO, params: [externalNumber as Any])
-            } label: {
-                Text("Navigate to Feature Two")
-            }.padding()
+            NavigationLink(value: FeatureTwoDestination.viewTwo){
+                Text("Navigate to Feature Two".uppercased())
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .shadow(radius: 10)
+            }
+                .padding()
+                .navigationDestination(for: FeatureTwoDestination.self) { destination in
+                    navigator.navigationTo(viewId: destination, params: [externalNumber as Any])
+                }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
             .background(Color.gray)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        navigator.navigateBack()
+                    } label: {
+                        Text("back")
+                    }
+                }
+            }
     }
 }

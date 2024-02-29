@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Navigator
 
 struct FeatureTwoView: View {
+    @EnvironmentObject private var navigator: Navigator
     
     var numberFromOne:Int?
     
@@ -20,6 +22,12 @@ struct FeatureTwoView: View {
             Text("Hello, World! This is the Feature Two").padding()
             
             Text("Number from One Feature: \(String(numberFromOne ?? 0))")
+            
+            Button(action: { navigator.finishFlow() }) {
+                Text("finish")
+            }
+                .padding()
+            
         }.padding()
     }
 }

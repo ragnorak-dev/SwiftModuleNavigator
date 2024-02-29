@@ -10,29 +10,29 @@ import Navigator
 import ViewIdentifiers
 
 struct ContentView: View {
+    @EnvironmentObject private var navigator: Navigator
     
     let greetsNavigate:[Any] = ["Hello unknow navigate view! I'm contentView, and the number is:", 12344]
     let greetsLocal:[Any] = ["Hello unknow embedded view! I'm contentView, and the number is:", 660002]
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigator.navPath) {
             VStack {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("Hello, world! This is the ContentView")
                 
-                Navigator.navigator.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsLocal)
+               navigator.navigationTo(viewId: FeatureOneDestination.viewOne, params: greetsLocal)
                 
-                NavigationLink {
-                    // destination view to navigation to
-                    Navigator.navigator.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsNavigate)
-                } label: {
-                    Text("Navigate to Feature One")
-                }.padding()
+                NavigationLink("Navigate to Feature One", value: FeatureOneDestination.viewOne).padding()
             }
             .padding()
-        }
+            
+            .navigationDestination(for: FeatureOneDestination.self){ destination in
+                navigator.navigationTo(viewId: destination, params: greetsNavigate)
+            }
+        }.environmentObject(navigator)
     }
 }
 

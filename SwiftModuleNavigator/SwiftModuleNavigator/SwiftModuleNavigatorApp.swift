@@ -8,18 +8,22 @@
 import SwiftUI
 import FeatureOne
 import FeatureTwo
+import Navigator
 
 @main
 struct SwiftModuleNavigatorApp: App {
+    var navigator: Navigator = Navigator()
+    
     init() {
-        FeatureOneLoeaderViews.loadViews()
-        FeatureTwoLoeaderViews.loadViews()
+        navigator.featureOneloadViews()
+        navigator.featureTwoloadViews()
     }
     
     var body: some Scene {
         
         WindowGroup {
             ContentView()
+                .environmentObject(navigator)
         }
     }
 }

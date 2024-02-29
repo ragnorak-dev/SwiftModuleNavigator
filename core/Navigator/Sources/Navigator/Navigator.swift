@@ -7,21 +7,38 @@
 
 import SwiftUI
 
-public class Navigator {
+@available(iOS 16.0, *)
+public final class Navigator: ObservableObject {
     
-    public static private(set) var navigator: Navigator = Navigator()
+    /* public static private(set) var navigator: Navigator = Navigator()
     
-    var dictionaryViews: [String: NavigationViewModule] = [:]
+    public static func getInstance() -> Navigator {
+        return navigator
+    }
+    */
+    var dictionaryViews: [AnyHashable: NavigationViewModule] = [:]
+    
+    @Published public var navPath: NavigationPath
     
     public init() {
-        
+        navPath = NavigationPath()
     }
     
-    public func addView(id: String, view: NavigationViewModule) {
+    public func addView(id: AnyHashable, view: NavigationViewModule) {
         dictionaryViews[id] = view
     }
     
-    public func navigationTo(viewId: String, params: [Any]? = nil) -> some View {
+    public func navigationTo(viewId: AnyHashable, params: [Any]? = nil) -> some View {
         return (self.dictionaryViews[viewId] as? SwiftUIViewModule)?.releaseView(params: params)
+    }
+    
+    public func finishFlow() {
+        navPath.removeLast(navPath.count)
+    }
+    
+    public func navigateBack() {
+        if navPath.count > 0 {
+            navPath.removeLast()
+        }
     }
 }
