@@ -9,7 +9,6 @@ import SwiftUI
 import Navigator
 
 struct FeatureTwoView: View {
-    @EnvironmentObject private var navigator: Navigator
     
     var numberFromOne:Int?
     
@@ -23,7 +22,7 @@ struct FeatureTwoView: View {
             
             Text("Number from One Feature: \(String(numberFromOne ?? 0))")
             
-            Button(action: { navigator.finishFlow() }) {
+            Button(action: { Navigator.getInstance().finishFlow() }) {
                 Text("finish")
             }
                 .padding()

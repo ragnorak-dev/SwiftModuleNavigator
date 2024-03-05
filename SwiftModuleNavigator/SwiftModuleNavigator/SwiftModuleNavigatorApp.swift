@@ -12,18 +12,16 @@ import Navigator
 
 @main
 struct SwiftModuleNavigatorApp: App {
-    var navigator: Navigator = Navigator()
     
     init() {
-        navigator.featureOneloadViews()
-        navigator.featureTwoloadViews()
+        Navigator.getInstance().featureOneloadViews()
+        Navigator.getInstance().featureTwoloadViews()
     }
     
     var body: some Scene {
         
         WindowGroup {
             ContentView()
-                .environmentObject(navigator)
         }
     }
 }

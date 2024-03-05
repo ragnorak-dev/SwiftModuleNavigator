@@ -10,12 +10,12 @@ import SwiftUI
 @available(iOS 16.0, *)
 public final class Navigator: ObservableObject {
     
-    /* public static private(set) var navigator: Navigator = Navigator()
+    static private var navigator: Navigator = Navigator()
     
     public static func getInstance() -> Navigator {
         return navigator
     }
-    */
+    
     var dictionaryViews: [AnyHashable: NavigationViewModule] = [:]
     
     @Published public var navPath: NavigationPath
@@ -28,8 +28,12 @@ public final class Navigator: ObservableObject {
         dictionaryViews[id] = view
     }
     
-    public func navigationTo(viewId: AnyHashable, params: [Any]? = nil) -> some View {
+    public func deliveryView(viewId: AnyHashable, params: [Any]? = nil) -> some View {
         return (self.dictionaryViews[viewId] as? SwiftUIViewModule)?.releaseView(params: params)
+    }
+    
+    public func navigate(to destination: any Hashable) {
+        navPath.append(destination)
     }
     
     public func finishFlow() {

@@ -11,7 +11,6 @@ import Navigator
 import ViewIdentifiers
 
 public struct FeatureOneView: View {
-    @EnvironmentObject private var navigator: Navigator
     
     var externalGreet: String? = nil
     var externalNumber: Int? = nil
@@ -43,7 +42,7 @@ public struct FeatureOneView: View {
             }
                 .padding()
                 .navigationDestination(for: FeatureTwoDestination.self) { destination in
-                    navigator.navigationTo(viewId: destination, params: [externalNumber as Any])
+                    Navigator.getInstance().deliveryView(viewId: destination, params: [externalNumber as Any])
                 }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -53,7 +52,7 @@ public struct FeatureOneView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        navigator.navigateBack()
+                        Navigator.getInstance().navigateBack()
                     } label: {
                         Text("back")
                     }
