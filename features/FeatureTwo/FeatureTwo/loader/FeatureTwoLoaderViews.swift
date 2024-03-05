@@ -11,7 +11,7 @@ import ViewIdentifiers
 public class FeatureTwoLoeaderViews {
     
     public static func loadViews() {
-        Navigator.navigator.addView(id: ViewIdentifiers.FEATURE_TWO, view: SwiftUIViewModule {
+        Navigator.shared.addView(id: ViewIdentifiers.FEATURE_TWO, view: SwiftUIViewModule {
             params in FeatureTwoView(numberFromOne: params?[0] as? Int ?? 0)
         })
     }

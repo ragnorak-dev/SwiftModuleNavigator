@@ -9,7 +9,7 @@ import SwiftUI
 
 public class Navigator {
     
-    public static private(set) var navigator: Navigator = Navigator()
+    public static private(set) var shared: Navigator = Navigator()
     
     var dictionaryViews: [String: NavigationViewModule] = [:]
     
