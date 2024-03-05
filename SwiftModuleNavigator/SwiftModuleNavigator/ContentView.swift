@@ -22,11 +22,11 @@ struct ContentView: View {
                     .foregroundColor(.accentColor)
                 Text("Hello, world! This is the ContentView")
                 
-                Navigator.navigator.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsLocal)
+                Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsLocal)
                 
                 NavigationLink {
                     // destination view to navigation to
-                    Navigator.navigator.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsNavigate)
+                    Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsNavigate)
                 } label: {
                     Text("Navigate to Feature One")
                 }.padding()
