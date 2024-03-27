@@ -7,12 +7,13 @@
 
 import Navigator
 import ViewIdentifiers
+import ViewParameters
 
 public class FeatureTwoLoeaderViews {
     
     public static func loadViews() {
         Navigator.shared.addView(id: ViewIdentifiers.FEATURE_TWO, view: SwiftUIViewModule {
-            params in FeatureTwoView(numberFromOne: params?[0] as? Int ?? 0)
+            params in FeatureTwoView(numberFromOne: params?[ViewParameters.FEATURE_TWO.numberFromOne] as? Int ?? 0)
         })
     }
 }
