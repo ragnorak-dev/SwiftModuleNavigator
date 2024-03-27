@@ -12,7 +12,7 @@ public class FeatureOneLoeaderViews {
     
     public static func loadViews() {
         Navigator.shared.addView(id: ViewIdentifiers.FEATURE_ONE, view: SwiftUIViewModule {
-            params in FeatureOneView(greet: params?[0] as? String ?? "", number: params?[1] as? Int ?? 0)
+            params in FeatureOneView(greet: params?["greet"] as? String ?? "", number: params?["number"] as? Int ?? 0)
         })
     }
 }

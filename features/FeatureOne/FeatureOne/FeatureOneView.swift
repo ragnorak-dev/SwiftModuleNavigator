@@ -31,7 +31,7 @@ public struct FeatureOneView: View {
             Text(String(externalNumber ?? 0))
             
             NavigationLink {
-                Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_TWO, params: [externalNumber as Any])
+                Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_TWO, params: ["numberFromOne" : externalNumber])
             } label: {
                 Text("Navigate to Feature Two")
             }.padding()

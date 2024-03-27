@@ -7,15 +7,18 @@
 
 import SwiftUI
 
+public typealias SwiftUIViewParams = [String : Any?]
+public typealias SwiftUIViewGenerator = (SwiftUIViewParams?) -> any View
+
 public class SwiftUIViewModule : NavigationViewModule {
     
-    public var viewMethod: ([Any]?) -> any View
+    public var viewMethod: (SwiftUIViewParams?) -> any View
     
-    public init(view: @escaping ([Any]?) -> any View) {
+    public init(view: @escaping SwiftUIViewGenerator) {
         viewMethod = view
     }
     
-    public func releaseView(params: [Any]?) -> some View{
+    public func releaseView(params: SwiftUIViewParams?) -> some View{
         return AnyView(viewMethod(params))
     }
 }
