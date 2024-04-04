@@ -21,7 +21,7 @@ public class Navigator {
         dictionaryViews[id] = view
     }
     
-    public func navigationTo(viewId: String, params: [Any]? = nil) -> some View {
+    public func navigationTo(viewId: String, params: SwiftUIViewParams? = nil) -> some View {
         return (self.dictionaryViews[viewId] as? SwiftUIViewModule)?.releaseView(params: params)
     }
 }

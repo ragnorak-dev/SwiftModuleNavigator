@@ -8,6 +8,7 @@
 import SwiftUI
 import Navigator
 import ViewIdentifiers
+import ViewParameters
 
 struct ContentView: View {
     
@@ -22,11 +23,13 @@ struct ContentView: View {
                     .foregroundColor(.accentColor)
                 Text("Hello, world! This is the ContentView")
                 
-                Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsLocal)
+                let FeatureOneParameters = ViewParameters.FEATURE_ONE.self
+                
+                Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: [FeatureOneParameters.greet : greetsLocal])
                 
                 NavigationLink {
                     // destination view to navigation to
-                    Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: greetsNavigate)
+                    Navigator.shared.navigationTo(viewId: ViewIdentifiers.FEATURE_ONE, params: [FeatureOneParameters.greet : greetsNavigate])
                 } label: {
                     Text("Navigate to Feature One")
                 }.padding()
